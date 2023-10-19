@@ -1,0 +1,12 @@
+host_names = []
+with open("mbox.txt", "r") as file:
+    for line in file:
+        if line.startswith("From:"):
+            parts = line.split()
+            if len(parts) > 1:
+                email = parts[1]
+                username, domain = email.split("@", 1)
+                host_names.append(domain)
+for host in set(host_names):
+    print(host)
+print(f"Number of unique hosts: {len(set(host_names))}")
